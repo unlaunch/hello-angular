@@ -1,0 +1,20 @@
+
+<form class="box" action="First.html" method="post">
+    <img src="https://angular.io/assets/images/logos/angular/angular.svg" />
+
+
+    <h4 class="dev">[see Console]</h4>
+    <div *ngIf="show; else showVariation">
+       
+        <h1 id="LoginForm" class="v1">Login v2</h1>
+    </div>
+    <ng-template #showVariation>
+        <h1 id="LoginForm" class="v2">Login v1</h1>
+    </ng-template>
+
+    <input type="text" name="" placeholder="Username">
+    <input type="password" name="" placeholder="Password">
+    <input type="submit" name="" value="Login">
+</form>
+
+<router-outlet></router-outlet>
