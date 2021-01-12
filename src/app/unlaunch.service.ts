@@ -4,8 +4,7 @@ import { Subject } from "rxjs";
 import * as ULClient from "unlaunch-js-client-lib";
 
 type Option = {
-  bootstrap: string;
-  evaluationReason: true;
+  localStorage: false;  
 };
 
 const FLAG: string = "new-login-form-flag";
@@ -27,10 +26,9 @@ export class UnlaunchService {
     const identity = IDENTITY;
 
     const options = {
-      // bootstrap: "localstorage", // NOTE: This is disabled for Demo to show new 
+      localStorage: false, // NOTE: This is disabled for Demo to show new 
                                     // variation each time. Enable it in your applications for 
                                     // best performance.
-      evaluationReason: true,
     };
 
     const ulclient = ULClient.initialize(
@@ -50,17 +48,16 @@ export class UnlaunchService {
     );
 
     ulclient.on("ready", () => {
-      let variation = ulclient.variation(flag);
-      console.log(`[UL] Variation is ${variation}`);
+      
+      const variation = ulclient.variationDetail(flag);
+      console.log(`[UL] Variation is ${variation.value}`);
+      console.log(`[UL] Evaluation reason is ${variation.reason}`);
 
-      const details = ulclient.variationDetail(flag);
-      console.log(`[UL] Evaluation reason is ${details.reason}`);
-
-      if (variation === "on") {
-        console.log("Vairiation is ON");
+      if (variation.value === "on") {
+        console.log("Variation is ON");
         this.flagChange.next(true);
       } else {
-        console.log("Vairiation is OFF");
+        console.log("Variation is OFF");
         this.flagChange.next(false);
       }
 

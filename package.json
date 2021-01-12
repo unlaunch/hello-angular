@@ -21,7 +21,7 @@
     "@angular/router": "~8.2.13",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
-    "unlaunch-js-client-lib": "0.0.7",
+    "unlaunch-js-client-lib": "~0.0.8",
     "zone.js": "~0.9.1"
   },
   "devDependencies": {
